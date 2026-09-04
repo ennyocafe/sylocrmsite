@@ -347,6 +347,53 @@
     .tst-head h2,.faq h2,.cta-card h2{font-size:28px}
     .foot-inner{grid-template-columns:1fr;gap:28px}
   }
+
+  /* ── demo modal ── */
+  .modal-overlay{position:fixed;inset:0;background:rgba(15,12,8,.6);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .28s ease}
+  .modal-overlay.open{opacity:1;pointer-events:auto}
+  .modal-card{background:#fff;border-radius:24px;width:100%;max-width:520px;padding:40px;position:relative;transform:translateY(18px) scale(.98);transition:transform .32s cubic-bezier(.16,1,.3,1);max-height:90vh;overflow-y:auto;scrollbar-width:none}
+  .modal-card::-webkit-scrollbar{display:none}
+  .modal-overlay.open .modal-card{transform:translateY(0) scale(1)}
+  .modal-close{position:absolute;top:18px;right:18px;background:none;border:0;cursor:pointer;color:var(--muted);padding:6px;border-radius:8px;line-height:0;transition:color .15s ease}
+  .modal-close:hover{color:var(--ink)}
+  .modal-tag{font-size:11px;font-weight:700;color:var(--amber-deep);background:var(--amber-tint);display:inline-block;padding:4px 12px;border-radius:999px;margin:0 0 12px;letter-spacing:.05em;text-transform:uppercase}
+  .modal-title{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.03em;margin:0 0 6px}
+  .modal-sub{font-size:15px;color:var(--muted);margin:0 0 26px;line-height:1.55}
+  .form-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .form-field label{font-size:13px;font-weight:600;color:var(--ink)}
+  .form-field input,.form-field select{border:1.5px solid var(--line);border-radius:10px;padding:13px 16px;font-family:inherit;font-size:15px;color:var(--ink);background:#fff;outline:none;transition:border-color .18s ease;-webkit-appearance:none;appearance:none;background-image:none}
+  .form-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%235b554b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:42px}
+  .form-field input:focus,.form-field select:focus{border-color:var(--amber)}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .demo-submit{width:100%;background:#151412;color:#fff;border:0;border-radius:999px;padding:18px;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;margin-top:10px;transition:background .2s ease,transform .15s ease;letter-spacing:-.01em}
+  .demo-submit:hover{background:#2a251f;transform:translateY(-1px)}
+  @media(max-width:520px){.modal-card{padding:28px 22px}.form-row{grid-template-columns:1fr}}
+
+  /* ── cookie banner ── */
+  .cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:150;background:#fff;border-top:1px solid var(--line);box-shadow:0 -8px 32px -16px rgba(0,0,0,.1);transform:translateY(110%);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+  .cookie-banner.visible{transform:translateY(0)}
+  .cookie-inner{max-width:1180px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .cookie-inner>p{font-size:14px;color:var(--muted);margin:0;flex:1;min-width:200px;line-height:1.5}
+  .cookie-link{color:var(--ink);font-weight:600;text-decoration:none}
+  .cookie-actions{display:flex;gap:10px;flex-shrink:0}
+  .cookie-accept{background:#151412;color:#fff;border:0;border-radius:999px;padding:11px 24px;font-weight:600;font-size:14px;font-family:inherit;cursor:pointer;white-space:nowrap;transition:transform .15s ease}
+  .cookie-accept:hover{transform:translateY(-1px)}
+  .cookie-config-btn{background:none;border:1.5px solid var(--line);border-radius:999px;padding:10px 20px;font-weight:600;font-size:14px;font-family:inherit;cursor:pointer;color:var(--ink);white-space:nowrap;transition:border-color .18s ease}
+  .cookie-config-btn:hover{border-color:var(--ink)}
+  .cookie-settings-panel{display:none;max-width:1180px;margin:0 auto;padding:0 28px 20px;flex-direction:column;gap:10px}
+  .cookie-settings-panel.open{display:flex}
+  .cookie-toggle-row{display:flex;align-items:flex-start;justify-content:space-between;padding:14px 16px;border:1px solid var(--line);border-radius:12px;gap:20px}
+  .cookie-toggle-info h5{font-size:14px;font-weight:700;color:var(--ink);margin:0 0 3px}
+  .cookie-toggle-info p{font-size:13px;color:var(--muted);margin:0;line-height:1.4}
+  .toggle-switch{position:relative;width:44px;height:24px;flex-shrink:0;margin-top:2px}
+  .toggle-switch input{opacity:0;width:0;height:0;position:absolute}
+  .toggle-slider{position:absolute;inset:0;background:var(--line);border-radius:999px;cursor:pointer;transition:background .2s ease}
+  .toggle-slider:before{content:"";position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:transform .2s ease;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .toggle-switch input:checked+.toggle-slider{background:var(--amber)}
+  .toggle-switch input:checked+.toggle-slider:before{transform:translateX(20px)}
+  .toggle-switch input:disabled+.toggle-slider{opacity:.55;cursor:default}
+  .cookie-save{align-self:flex-end;background:#151412;color:#fff;border:0;border-radius:999px;padding:10px 24px;font-weight:600;font-size:14px;font-family:inherit;cursor:pointer;transition:transform .15s ease}
+  .cookie-save:hover{transform:translateY(-1px)}
 </style>
 </head>
 <body>
@@ -713,6 +760,102 @@
     <div class="foot-bottom"><div class="foot-copy">&copy; 2026 Sylo. Todos os direitos reservados.</div></div>
   </footer>
 
+  <!-- demo modal -->
+  <div class="modal-overlay" id="demoOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <span class="modal-tag">Demo gratuita</span>
+      <h2 class="modal-title" id="modalTitle">Agende sua demonstração</h2>
+      <p class="modal-sub">Mostramos o Sylo rodando com a rotina do seu time em menos de 30 minutos.</p>
+      <form id="demoForm" novalidate>
+        <div class="form-field">
+          <label for="f-nome">Nome completo</label>
+          <input id="f-nome" type="text" required placeholder="João Silva">
+        </div>
+        <div class="form-field">
+          <label for="f-email">E-mail profissional</label>
+          <input id="f-email" type="email" required placeholder="joao@imobiliaria.com.br">
+        </div>
+        <div class="form-field">
+          <label for="f-empresa">Empresa</label>
+          <input id="f-empresa" type="text" required placeholder="Nome da sua imobiliária">
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="f-func">Funcionários</label>
+            <select id="f-func" required>
+              <option value="">Selecione</option>
+              <option>1 a 5</option>
+              <option>6 a 20</option>
+              <option>21 a 50</option>
+              <option>51 a 200</option>
+              <option>Mais de 200</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="f-cargo">Cargo</label>
+            <select id="f-cargo" required>
+              <option value="">Selecione</option>
+              <option>Proprietário / Sócio</option>
+              <option>Diretor</option>
+              <option>Gerente / Coordenador</option>
+              <option>Corretor</option>
+              <option>Outro</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="f-disp">Disponibilidade para a reunião</label>
+          <select id="f-disp" required>
+            <option value="">Selecione um horário</option>
+            <option>Segunda a sexta, manhã (8h–12h)</option>
+            <option>Segunda a sexta, tarde (13h–18h)</option>
+            <option>Qualquer dia útil, qualquer horário</option>
+            <option>Prefiro combinar por e-mail</option>
+          </select>
+        </div>
+        <button type="submit" class="demo-submit">Agendar minha demonstração</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- cookie banner -->
+  <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Preferências de cookies">
+    <div class="cookie-inner">
+      <p>Usamos cookies para melhorar sua experiência e analisar o uso do site. <a href="#" class="cookie-link">Saiba mais</a>.</p>
+      <div class="cookie-actions">
+        <button class="cookie-config-btn" id="cookieConfigBtn">Configurações</button>
+        <button class="cookie-accept" id="cookieAccept">Aceitar todos</button>
+      </div>
+    </div>
+    <div class="cookie-settings-panel" id="cookieSettingsPanel">
+      <div class="cookie-toggle-row">
+        <div class="cookie-toggle-info">
+          <h5>Cookies essenciais</h5>
+          <p>Necessários para o funcionamento do site. Não podem ser desativados.</p>
+        </div>
+        <label class="toggle-switch"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+      </div>
+      <div class="cookie-toggle-row">
+        <div class="cookie-toggle-info">
+          <h5>Cookies de análise</h5>
+          <p>Nos ajudam a entender como você usa o site para melhorar a experiência.</p>
+        </div>
+        <label class="toggle-switch"><input type="checkbox" id="analyticsToggle" checked><span class="toggle-slider"></span></label>
+      </div>
+      <div class="cookie-toggle-row">
+        <div class="cookie-toggle-info">
+          <h5>Cookies de marketing</h5>
+          <p>Usados para exibir anúncios relevantes para você em outros canais.</p>
+        </div>
+        <label class="toggle-switch"><input type="checkbox" id="marketingToggle"><span class="toggle-slider"></span></label>
+      </div>
+      <button class="cookie-save" id="cookieSave">Salvar preferências</button>
+    </div>
+  </div>
+
 <script>
 (function(){
   var nav=document.getElementById('nav');
@@ -810,6 +953,75 @@
   var v=document.querySelector('.cta-bg'); if(!v) return;
   var go=function(){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); };
   if(v.readyState>=2) go(); else v.addEventListener('loadeddata',go,{once:true});
+})();
+</script>
+
+<script>
+(function(){
+  // ── Demo modal ──
+  var overlay=document.getElementById('demoOverlay');
+  var modalClose=document.getElementById('modalClose');
+  var demoForm=document.getElementById('demoForm');
+
+  function openDemo(){
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+    setTimeout(function(){ overlay.querySelector('input,select'); },50);
+  }
+  function closeDemo(){
+    overlay.classList.remove('open');
+    document.body.style.overflow='';
+  }
+
+  modalClose.addEventListener('click',closeDemo);
+  overlay.addEventListener('click',function(e){ if(e.target===overlay) closeDemo(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDemo(); });
+
+  demoForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    var inputs=demoForm.querySelectorAll('[required]');
+    var ok=true;
+    inputs.forEach(function(el){
+      if(!el.value.trim()){ el.style.borderColor='#ef4444'; ok=false; }
+      else el.style.borderColor='';
+    });
+    if(ok) window.location.href='obrigado.html';
+  });
+
+  document.querySelectorAll('button,a').forEach(function(el){
+    if(el.textContent.trim()==='Agendar demo'){
+      el.addEventListener('click',function(e){ e.preventDefault(); openDemo(); });
+    }
+  });
+
+  // ── Cookie banner ──
+  var banner=document.getElementById('cookieBanner');
+  var configBtn=document.getElementById('cookieConfigBtn');
+  var acceptBtn=document.getElementById('cookieAccept');
+  var settingsPanel=document.getElementById('cookieSettingsPanel');
+  var saveBtn=document.getElementById('cookieSave');
+
+  if(!localStorage.getItem('sylo_cookies')){
+    setTimeout(function(){ banner.classList.add('visible'); },900);
+  }
+
+  acceptBtn.addEventListener('click',function(){
+    localStorage.setItem('sylo_cookies','all');
+    banner.classList.remove('visible');
+  });
+
+  configBtn.addEventListener('click',function(){
+    settingsPanel.classList.toggle('open');
+  });
+
+  saveBtn.addEventListener('click',function(){
+    var prefs={
+      analytics: document.getElementById('analyticsToggle').checked,
+      marketing: document.getElementById('marketingToggle').checked
+    };
+    localStorage.setItem('sylo_cookies',JSON.stringify(prefs));
+    banner.classList.remove('visible');
+  });
 })();
 </script>
 </body>

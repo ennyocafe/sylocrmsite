@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Obrigado — Sylo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --ink:#181713;
+    --muted:#5b554b;
+    --line:#E8E3D8;
+    --amber:#F4A72A;
+    --amber-deep:#E6941A;
+    --amber-soft:#FBD26B;
+    --amber-tint:#FDF4DC;
+    --good:#2FA36B;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:var(--ink);-webkit-font-smoothing:antialiased}
+
+  /* nav */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1180px;margin:0 auto;padding:18px 28px;display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .logo-mark{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--amber-soft),var(--amber));position:relative;flex-shrink:0}
+  .logo-mark:after{content:"";position:absolute;inset:6px 5px;border-left:3px solid #fff;border-bottom:3px solid #fff;transform:skewX(-12deg);opacity:.95}
+  .logo-text{font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.04em}
+  .back-link{font-size:14px;font-weight:600;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .18s ease}
+  .back-link:hover{color:var(--ink)}
+  .back-link svg{transition:transform .18s ease}
+  .back-link:hover svg{transform:translateX(-3px)}
+
+  /* thank you hero */
+  .ty-wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 28px 80px;text-align:center}
+  .ty-icon{width:72px;height:72px;background:var(--amber-tint);border-radius:999px;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;animation:popIn .5s cubic-bezier(.16,1,.3,1) both}
+  @keyframes popIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+  .ty-icon svg{color:var(--amber-deep)}
+  .ty-chip{font-size:12px;font-weight:700;color:var(--amber-deep);background:var(--amber-tint);display:inline-block;padding:4px 14px;border-radius:999px;margin:0 0 16px;letter-spacing:.05em;text-transform:uppercase}
+  .ty-title{font-size:clamp(32px,5vw,52px);font-weight:900;letter-spacing:-.04em;line-height:1.08;margin:0 0 16px;max-width:640px}
+  .ty-sub{font-size:18px;color:var(--muted);line-height:1.6;max-width:480px;margin:0 auto 36px}
+  .ty-info{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);font-weight:500}
+  .ty-info svg{color:var(--good);flex-shrink:0}
+  .ty-back{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:15px;font-weight:600;color:var(--muted);text-decoration:none;transition:color .18s ease}
+  .ty-back:hover{color:var(--ink)}
+
+  /* divider */
+  .divider{max-width:1180px;margin:0 auto;height:1px;background:var(--line)}
+
+  /* blog section */
+  .blog{padding:80px 28px 100px;max-width:1180px;margin:0 auto}
+  .blog-head{margin-bottom:48px}
+  .blog-label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px}
+  .blog-head h2{font-size:clamp(26px,4vw,38px);font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+  .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .blog-card{border:1px solid var(--line);border-radius:20px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:box-shadow .2s ease,transform .2s ease}
+  .blog-card:hover{box-shadow:0 12px 40px -16px rgba(0,0,0,.15);transform:translateY(-3px)}
+  .blog-thumb{height:180px;display:flex;align-items:flex-end;padding:20px;position:relative;overflow:hidden}
+  .blog-thumb-1{background:linear-gradient(135deg,#1a3a22,#2d6b3a)}
+  .blog-thumb-2{background:linear-gradient(135deg,#2a1f0e,#8a5c12)}
+  .blog-thumb-3{background:linear-gradient(135deg,#0e1f2a,#12526b)}
+  .blog-thumb:before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,rgba(0,0,0,.35))}
+  .blog-tag{position:relative;font-size:11px;font-weight:700;color:#fff;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);padding:4px 12px;border-radius:999px;letter-spacing:.04em;text-transform:uppercase;backdrop-filter:blur(6px)}
+  .blog-body{padding:22px 24px 24px;flex:1;display:flex;flex-direction:column;gap:10px}
+  .blog-body h3{font-size:17px;font-weight:700;letter-spacing:-.02em;line-height:1.4;color:var(--ink)}
+  .blog-meta{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);font-weight:500}
+  .blog-dot{width:3px;height:3px;border-radius:50%;background:var(--line)}
+  .blog-read{margin-left:auto;font-size:13px;font-weight:600;color:var(--amber-deep);display:flex;align-items:center;gap:4px}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:28px;text-align:center}
+  footer p{font-size:13px;color:#8a857a}
+
+  /* cookie banner */
+  .cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:150;background:#fff;border-top:1px solid var(--line);box-shadow:0 -8px 32px -16px rgba(0,0,0,.1);transform:translateY(110%);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+  .cookie-banner.visible{transform:translateY(0)}
+  .cookie-inner{max-width:1180px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .cookie-inner>p{font-size:14px;color:var(--muted);margin:0;flex:1;min-width:200px;line-height:1.5}
+  .cookie-link{color:var(--ink);font-weight:600;text-decoration:none}
+  .cookie-actions{display:flex;gap:10px;flex-shrink:0}
+  .cookie-accept{background:#151412;color:#fff;border:0;border-radius:999px;padding:11px 24px;font-weight:600;font-size:14px;font-family:inherit;cursor:pointer;white-space:nowrap;transition:transform .15s ease}
+  .cookie-accept:hover{transform:translateY(-1px)}
+  .cookie-config-btn{background:none;border:1.5px solid var(--line);border-radius:999px;padding:10px 20px;font-weight:600;font-size:14px;font-family:inherit;cursor:pointer;color:var(--ink);white-space:nowrap;transition:border-color .18s ease}
+  .cookie-config-btn:hover{border-color:var(--ink)}
+  .cookie-settings-panel{display:none;max-width:1180px;margin:0 auto;padding:0 28px 20px;flex-direction:column;gap:10px}
+  .cookie-settings-panel.open{display:flex}
+  .cookie-toggle-row{display:flex;align-items:flex-start;justify-content:space-between;padding:14px 16px;border:1px solid var(--line);border-radius:12px;gap:20px}
+  .cookie-toggle-info h5{font-size:14px;font-weight:700;color:var(--ink);margin:0 0 3px}
+  .cookie-toggle-info p{font-size:13px;color:var(--muted);margin:0;line-height:1.4}
+  .toggle-switch{position:relative;width:44px;height:24px;flex-shrink:0;margin-top:2px}
+  .toggle-switch input{opacity:0;width:0;height:0;position:absolute}
+  .toggle-slider{position:absolute;inset:0;background:var(--line);border-radius:999px;cursor:pointer;transition:background .2s ease}
+  .toggle-slider:before{content:"";position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:transform .2s ease;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .toggle-switch input:checked+.toggle-slider{background:var(--amber)}
+  .toggle-switch input:checked+.toggle-slider:before{transform:translateX(20px)}
+  .toggle-switch input:disabled+.toggle-slider{opacity:.55;cursor:default}
+  .cookie-save{align-self:flex-end;background:#151412;color:#fff;border:0;border-radius:999px;padding:10px 24px;font-weight:600;font-size:14px;font-family:inherit;cursor:pointer;transition:transform .15s ease}
+  .cookie-save:hover{transform:translateY(-1px)}
+
+  @media(max-width:768px){
+    .blog-grid{grid-template-columns:1fr}
+    .ty-info{flex-direction:column;gap:4px}
+  }
+</style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-mark"></div>
+        <span class="logo-text">sylo</span>
+      </a>
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        Voltar ao site
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="ty-wrap">
+      <div class="ty-icon">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <span class="ty-chip">Solicitação recebida</span>
+      <h1 class="ty-title">Ótimo, falta pouco.</h1>
+      <p class="ty-sub">Nosso time vai entrar em contato em até 1 dia útil para confirmar o horário da sua demonstração.</p>
+      <div class="ty-info">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.5 2.5"/></svg>
+        Resposta em até 1 dia útil
+      </div>
+      <a href="index.html" class="ty-back">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        Voltar para o início
+      </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <section class="blog">
+      <div class="blog-head">
+        <p class="blog-label">Blog do Sylo</p>
+        <h2>Enquanto isso, aproveite o conteúdo</h2>
+      </div>
+      <div class="blog-grid">
+
+        <a href="#" class="blog-card">
+          <div class="blog-thumb blog-thumb-1">
+            <span class="blog-tag">Distribuição</span>
+          </div>
+          <div class="blog-body">
+            <h3>Como distribuir leads automaticamente e parar de perder clientes que você já pagou caro</h3>
+            <div class="blog-meta">
+              <span>15 ago 2026</span>
+              <span class="blog-dot"></span>
+              <span>5 min</span>
+              <span class="blog-read">Ler <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="blog-card">
+          <div class="blog-thumb blog-thumb-2">
+            <span class="blog-tag">Gestão</span>
+          </div>
+          <div class="blog-body">
+            <h3>As 5 métricas que todo gestor de imobiliária deveria acompanhar toda semana</h3>
+            <div class="blog-meta">
+              <span>08 ago 2026</span>
+              <span class="blog-dot"></span>
+              <span>6 min</span>
+              <span class="blog-read">Ler <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="blog-card">
+          <div class="blog-thumb blog-thumb-3">
+            <span class="blog-tag">Tecnologia</span>
+          </div>
+          <div class="blog-body">
+            <h3>WhatsApp e CRM: como integrar as duas ferramentas sem bagunçar a operação do time</h3>
+            <div class="blog-meta">
+              <span>01 ago 2026</span>
+              <span class="blog-dot"></span>
+              <span>4 min</span>
+              <span class="blog-read">Ler <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Sylo. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- cookie banner -->
+  <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Preferências de cookies">
+    <div class="cookie-inner">
+      <p>Usamos cookies para melhorar sua experiência e analisar o uso do site. <a href="#" class="cookie-link">Saiba mais</a>.</p>
+      <div class="cookie-actions">
+        <button class="cookie-config-btn" id="cookieConfigBtn">Configurações</button>
+        <button class="cookie-accept" id="cookieAccept">Aceitar todos</button>
+      </div>
+    </div>
+    <div class="cookie-settings-panel" id="cookieSettingsPanel">
+      <div class="cookie-toggle-row">
+        <div class="cookie-toggle-info">
+          <h5>Cookies essenciais</h5>
+          <p>Necessários para o funcionamento do site. Não podem ser desativados.</p>
+        </div>
+        <label class="toggle-switch"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+      </div>
+      <div class="cookie-toggle-row">
+        <div class="cookie-toggle-info">
+          <h5>Cookies de análise</h5>
+          <p>Nos ajudam a entender como você usa o site para melhorar a experiência.</p>
+        </div>
+        <label class="toggle-switch"><input type="checkbox" id="analyticsToggle" checked><span class="toggle-slider"></span></label>
+      </div>
+      <div class="cookie-toggle-row">
+        <div class="cookie-toggle-info">
+          <h5>Cookies de marketing</h5>
+          <p>Usados para exibir anúncios relevantes para você em outros canais.</p>
+        </div>
+        <label class="toggle-switch"><input type="checkbox" id="marketingToggle"><span class="toggle-slider"></span></label>
+      </div>
+      <button class="cookie-save" id="cookieSave">Salvar preferências</button>
+    </div>
+  </div>
+
+<script>
+(function(){
+  var banner=document.getElementById('cookieBanner');
+  var configBtn=document.getElementById('cookieConfigBtn');
+  var acceptBtn=document.getElementById('cookieAccept');
+  var settingsPanel=document.getElementById('cookieSettingsPanel');
+  var saveBtn=document.getElementById('cookieSave');
+
+  if(!localStorage.getItem('sylo_cookies')){
+    setTimeout(function(){ banner.classList.add('visible'); },900);
+  }
+  acceptBtn.addEventListener('click',function(){
+    localStorage.setItem('sylo_cookies','all');
+    banner.classList.remove('visible');
+  });
+  configBtn.addEventListener('click',function(){
+    settingsPanel.classList.toggle('open');
+  });
+  saveBtn.addEventListener('click',function(){
+    var prefs={
+      analytics:document.getElementById('analyticsToggle').checked,
+      marketing:document.getElementById('marketingToggle').checked
+    };
+    localStorage.setItem('sylo_cookies',JSON.stringify(prefs));
+    banner.classList.remove('visible');
+  });
+})();
+</script>
+</body>
+</html>
