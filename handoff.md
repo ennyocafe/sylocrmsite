@@ -1,140 +1,83 @@
-# Sylo — Handoff da Sessão (setembro 2026)
-
-## Repositório e deploy
-
-| | |
-|---|---|
-| **GitHub** | https://github.com/ennyocafe/sylocrmsite |
-| **Branch principal** | `master` |
-| **Deploy** | Vercel — conectado ao GitHub, redeploy automático a cada `git push` |
-| **Conta GitHub** | ennyocafe |
-
-Fluxo de atualização:
-```
-Edita arquivo → git add → git commit → git push → Vercel redeploya sozinho
-```
+# Handoff — Sylo CRM Site
+**Sessão:** 2026-09-06
 
 ---
 
-## Arquivos do projeto
+## Como rodar
 
+```bash
+npx serve "C:/Users/Ennyo Cafe/downloads/sylocrmsite" -p 3000
+# abre http://localhost:3000
 ```
-sylocrmsite/
-├── index.html       ← landing page principal (arquivo único, autossuficiente)
-├── obrigado.html    ← página pós-envio do formulário de demo
-├── .gitignore
-└── handoff.md       ← este arquivo
-```
-
-Páginas planejadas mas ainda não criadas:
-- `como-funciona.html` — menu já aponta para este arquivo
-- `planos.html` — menu já aponta para este arquivo
 
 ---
 
 ## O que foi feito nesta sessão
 
-### 1. Deploy inicial
-- Criado repositório `sylocrmsite` no GitHub via `gh` CLI
-- Conectado ao Vercel pelo dashboard (import do repositório GitHub)
-- `index.html` é o `sylo-hero (5).html` original renomeado
+### 1. Vídeo de fundo da hero (Sara)
+- `sara.webm` (1.9 MB) + `sara.mp4` fallback na pasta do projeto
+- Autoplay loop muted — zero JS de scrubbing
+- Parallax suave: translateX/Y + requestAnimationFrame + lerp (60fps)
+- Hover no botão "Agendar demonstração" → filtro dourado na Sara
+- IntersectionObserver pausa o rAF quando hero sai da viewport
 
-### 2. Ajuste de texto
-- "O que o time usa todo dia" → quebra de linha após "usa" (`<br>`)
+### 2. Layout da hero
+- `.hero-inner` espelha o nav: `max-width:1180px; margin:0 auto; padding:0 28px`
+- Heading e botões alinhados com a logo do menu (mesmo padding-left)
+- `.hero-left { max-width:620px }`
+- Texto "Feito para imobiliárias..." removido
 
-### 3. Menu mobile
-- Barra fixa no mobile mostra apenas **logo + botão hambúrguer** (ícone 3 barras)
-- Ao clicar, abre overlay full-screen com animação slide + fade
-- Itens do menu entram com stagger (atraso escalonado por item)
-- Hambúrguer vira X enquanto o menu está aberto
-- Fecha com: clique no X, clique fora, tecla Escape ou clique em qualquer link
-- Ícone de idioma e botão "Agendar demo" ficam ocultos no mobile (estão dentro do drawer)
+### 3. Tipografia e botões
+- Heading: 42px / 700 — "Seu time vende. O **Sylo CRM** organiza o resto."
+- "Sylo CRM" em âmbar `#FBB555`
+- Subtítulo com `margin-bottom:24px` (gap antes dos botões)
+- Botões lado a lado: `btn-amber` + `btn-outline-white`
 
-### 4. Links funcionais do menu
-| Link | Destino |
-|---|---|
-| Logo | `#` (topo da página) |
-| Produto | `#showcase` (seção de telas do produto) |
-| Como funciona | `como-funciona.html` (página a criar) |
-| Planos | `planos.html` (página a criar) |
-| FAQ | `#faq` (seção FAQ) |
-
-### 5. Remoção da seção Integrações
-- Seção "Conectado com o que seu time já usa" removida da página
-- CSS relacionado (`.strip`, `.ichip`) removido
-- "Integrações" removido do menu desktop, mobile e rodapé
-
-### 6. Modal "Agendar demo"
-- Todos os botões "Agendar demo" da página abrem o modal
-- Logo do Sylo (mark âmbar + texto) no topo do modal
-- Campos: Nome completo, E-mail profissional, Empresa, Funcionários (select), Cargo (select), Disponibilidade (select)
-- Validação de campos obrigatórios antes de submeter (borda vermelha nos vazios)
-- Ao submeter com sucesso → redireciona para `obrigado.html`
-- Fecha com X, clique no overlay ou Escape
-- Bloqueia scroll do body enquanto aberto
-
-### 7. Página obrigado.html
-- Nav simples: logo CSS (mark âmbar + "sylo") + link "Voltar ao site"
-- Ícone de check com animação de entrada (`popIn`)
-- Mensagem: "Ótimo, falta pouco." + resposta em até 1 dia útil
-- 3 cards de blog placeholder (Distribuição, Gestão, Tecnologia) — conteúdo fictício para layout
-- Rodapé simples com copyright
-
-### 8. Banner de cookies
-- Aparece após 900ms na primeira visita (verifica `localStorage`)
-- "Aceitar todos" → salva `sylo_cookies: 'all'` no localStorage
-- "Configurações" → expande painel com toggles:
-  - Essenciais (sempre ativo, desabilitado)
-  - Análise (ativo por padrão)
-  - Marketing (inativo por padrão)
-- "Salvar preferências" → salva objeto JSON e fecha o banner
-- Presente em `index.html` e `obrigado.html`
+### 4. Divisor animado
+- `<div class="hero-divider">` entre hero e seção "América do Sul"
+- Gradiente âmbar animado: `#7a4a00 → #FBB555 → #FFE29A` em loop de 4s
+- 4px de altura
 
 ---
 
-## Sistema de design (referência rápida)
+## Próximo passo (interrompido)
 
-**Cores:**
+Trocar o vídeo de fundo da hero por:
 ```
---ink:         #181713  (texto principal)
---muted:       #5b554b  (texto secundário)
---line:        #E8E3D8  (bordas)
---amber:       #F4A72A  (cor da marca)
---amber-deep:  #E6941A
---amber-soft:  #FBD26B
---amber-tint:  #FDF4DC  (fundo suave âmbar)
---good:        #2FA36B  (verde de confirmação)
+C:\Users\Ennyo Cafe\Downloads\magnific_para-um-video-continuo-de_6ATQOKqiJO.mp4
 ```
-
-**Fonte:** Inter (Google Fonts), pesos 400–900
-
-**Breakpoints:** `max-width: 900px` (principal), `max-width: 420px` (títulos menores)
-
-**Botões:** `border-radius: 999px` (pílula)
-
-**Cards/modais:** `border-radius: 24px`
+1. Copiar para a pasta do projeto (ex: `hero.mp4` / `hero.webm`)
+2. Atualizar as `<source>` tags no `<video id="saraVideo">`
+3. Avaliar se mantém o parallax JS ou remove (se o novo vídeo for loop estático)
 
 ---
 
-## Próximos passos sugeridos
+## Estrutura da hero (HTML atual)
 
-- [ ] Criar `como-funciona.html` (página dedicada ao fluxo do produto)
-- [ ] Criar `planos.html` (página dedicada de preços)
-- [ ] Conectar o formulário de demo a um backend real (ex: email via Resend, Formspree, ou webhook no n8n)
-- [ ] Substituir placeholders do blog por artigos reais
-- [ ] Adicionar meta tags de SEO: `<title>`, `<meta name="description">`, Open Graph
-- [ ] Adicionar Google Analytics ou outra ferramenta de analytics (já há o toggle de cookies)
-- [ ] Conectar links "Saiba mais" do banner de cookies a uma política de privacidade real
-- [ ] Revisar conteúdo de exemplo antes de publicar (ver seção 5 do handoff original: `sylo-handoff.md`)
+```html
+<div class="hero-wrap">
+  <div id="saraStage" aria-hidden="true">
+    <video class="sara-video" id="saraVideo" autoplay loop muted playsinline preload="auto">
+      <source src="sara.webm" type="video/webm">
+      <source src="sara.mp4"  type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <h2 class="hero-heading">Seu time vende.<br>O <span class="amber-text">Sylo CRM</span> organiza o resto.</h2>
+        <p class="hero-sub">...</p>
+        <div class="hero-cta">
+          <button class="btn btn-amber" id="btn-agendar-demo">Agendar demonstração</button>
+          <button class="btn btn-outline-white">Ver planos</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
----
+<div class="hero-divider" aria-hidden="true"></div>
 
-## Como continuar em outra sessão
-
-1. Envie este `handoff.md` + o `sylo-handoff.md` original no novo chat
-2. O repositório está em https://github.com/ennyocafe/sylocrmsite — clonar ou abrir o diretório local
-3. Editar `index.html` ou `obrigado.html` → `git commit` → `git push` → Vercel atualiza
-
----
-
-*Fim do handoff — sessão encerrada em setembro 2026.*
+<section class="presence">...</section>
+```
