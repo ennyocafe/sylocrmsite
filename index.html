@@ -507,6 +507,9 @@
   .form-error{display:none;margin:12px 0 0;color:#b42318;font-size:13px;line-height:1.5;text-align:center}
   .form-error.show{display:block}
   .form-honeypot{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+  .form-consent{display:flex;align-items:flex-start;gap:10px;margin:4px 0 14px}
+  .form-consent input{width:18px;height:18px;flex:0 0 18px;margin:2px 0 0;padding:0;border-radius:4px;appearance:auto;-webkit-appearance:auto;accent-color:var(--amber-deep);cursor:pointer}
+  .form-consent label{font-size:12px;line-height:1.5;color:var(--muted);cursor:pointer}
   .support-success{display:none;text-align:center;padding:18px 0 6px}
   .support-success.show{display:block}
   .support-success .success-icon{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;background:#EAF7F0;color:var(--good)}
@@ -990,6 +993,10 @@
           <input id="f-email" name="email" type="email" required placeholder="joao@empresa.com.br">
         </div>
         <div class="form-field">
+          <label for="f-celular">Celular com WhatsApp</label>
+          <input id="f-celular" name="celular" type="tel" inputmode="tel" autocomplete="tel" required minlength="10" maxlength="20" pattern="[0-9()+ -]{10,20}" placeholder="(11) 99999-9999">
+        </div>
+        <div class="form-field">
           <label for="f-empresa">Empresa</label>
           <input id="f-empresa" name="empresa" type="text" required placeholder="Nome da sua representação">
         </div>
@@ -1026,6 +1033,10 @@
             <option>Qualquer dia útil, qualquer horário</option>
             <option>Prefiro combinar por e-mail</option>
           </select>
+        </div>
+        <div class="form-consent">
+          <input id="f-aceite" name="aceite_dados" type="checkbox" value="true" required>
+          <label for="f-aceite">Autorizo a Sylo a tratar e compartilhar os dados informados com seus prestadores de tecnologia, exclusivamente para atender minha solicitação de demonstração.</label>
         </div>
         <button type="submit" class="demo-submit">Agendar minha demonstração</button>
         <p class="form-error" id="demoError" role="alert">Não foi possível enviar agora. Verifique sua conexão e tente novamente.</p>
@@ -1294,10 +1305,12 @@
     var payload={
       nome:formData.get('nome'),
       email:formData.get('email'),
+      celular:formData.get('celular'),
       empresa:formData.get('empresa'),
       pessoas_equipe:formData.get('pessoas_equipe'),
       cargo:formData.get('cargo'),
       disponibilidade:formData.get('disponibilidade'),
+      aceite_dados:document.getElementById('f-aceite').checked,
       website:formData.get('website'),
       pagina:window.location.href
     };

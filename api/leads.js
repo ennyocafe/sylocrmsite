@@ -84,23 +84,29 @@ function validate(body) {
   const data = {
     nome: cleanText(body.nome, 120),
     email: cleanText(body.email, 180).toLowerCase(),
+    celular: cleanText(body.celular, 20),
     empresa: cleanText(body.empresa, 160),
     pessoas_equipe: cleanText(body.pessoas_equipe, 30),
     cargo: cleanText(body.cargo, 50),
     disponibilidade: cleanText(body.disponibilidade, 80),
+    aceite_dados: body.aceite_dados === true,
     pagina: cleanText(body.pagina, 500)
   };
 
   const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
+  const phoneDigits = data.celular.replace(/\D/g, '');
+  const phoneIsValid = phoneDigits.length >= 10 && phoneDigits.length <= 13;
   const pageIsValid = !data.pagina || /^https?:\/\//i.test(data.pagina);
 
   if (
     data.nome.length < 2 ||
     !emailIsValid ||
+    !phoneIsValid ||
     data.empresa.length < 2 ||
     !ALLOWED_TEAM_SIZES.has(data.pessoas_equipe) ||
     !ALLOWED_ROLES.has(data.cargo) ||
     !ALLOWED_AVAILABILITY.has(data.disponibilidade) ||
+    !data.aceite_dados ||
     !pageIsValid
   ) {
     return null;
@@ -181,6 +187,7 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify({
         ...lead,
         origem: 'Site Sylo',
+        aceite_em: new Date().toISOString(),
         enviado_em: new Date().toISOString()
       }),
       signal: controller.signal
