@@ -490,6 +490,7 @@
   .modal-overlay.open .modal-card{transform:translateY(0) scale(1)}
   .modal-close{position:absolute;top:18px;right:18px;background:none;border:0;cursor:pointer;color:var(--muted);padding:6px;border-radius:8px;line-height:0;transition:color .15s ease}
   .modal-close:hover{color:var(--ink)}
+  .modal-brand-logo{display:block;width:108px;height:auto;margin:0 0 22px}
   .modal-tag{font-size:11px;font-weight:700;color:var(--amber-deep);background:var(--amber-tint);display:inline-block;padding:4px 12px;border-radius:999px;margin:0 0 12px;letter-spacing:.05em;text-transform:uppercase}
   .modal-title{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.03em;margin:0 0 6px}
   .modal-sub{font-size:15px;color:var(--muted);margin:0 0 26px;line-height:1.55}
@@ -967,10 +968,7 @@
       <button class="modal-close" id="modalClose" aria-label="Fechar">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
-      <div style="display:flex;align-items:center;gap:9px;margin-bottom:20px">
-        <span class="mark"></span>
-        <span style="font-size:17px;font-weight:900;color:var(--ink);letter-spacing:-.04em">sylo</span>
-      </div>
+      <img class="modal-brand-logo" src="assets/brand/sylo-logo.png" alt="Sylo">
       <span class="modal-tag">Demonstração gratuita</span>
       <h2 class="modal-title" id="modalTitle">Agende sua demonstração</h2>
       <p class="modal-sub">Mostramos o Sylo rodando com a rotina do seu time em menos de 30 minutos.</p>
@@ -1033,10 +1031,7 @@
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
       <div id="supportFormWrap">
-        <div style="display:flex;align-items:center;gap:9px;margin-bottom:20px">
-          <span class="mark"></span>
-          <span style="font-size:17px;font-weight:900;color:var(--ink);letter-spacing:-.04em">sylo</span>
-        </div>
+        <img class="modal-brand-logo" src="assets/brand/sylo-logo.png" alt="Sylo">
         <span class="modal-tag">Central de suporte</span>
         <h2 class="modal-title" id="supportTitle">Como podemos ajudar?</h2>
         <p class="modal-sub">Descreva sua solicitação. Quanto mais contexto você enviar, mais rápido nosso time poderá orientar você.</p>

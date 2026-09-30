@@ -16,9 +16,8 @@
   a{color:inherit}
   .topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
   .topbar-inner{max-width:1180px;margin:0 auto;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:22px;font-weight:900;letter-spacing:-.05em}
-  .mark{width:29px;height:29px;border-radius:8px;background:linear-gradient(135deg,#fbd26b,var(--amber));position:relative}
-  .mark:after{content:"";position:absolute;inset:7px 6px;border-left:3px solid #fff;border-bottom:3px solid #fff;transform:skewX(-12deg)}
+  .brand{display:flex;align-items:center;text-decoration:none}
+  .brand img{display:block;width:108px;height:auto}
   .top-actions{display:flex;align-items:center;gap:22px}
   .back{font-size:14px;font-weight:600;text-decoration:none;color:var(--muted)}
   .back:hover{color:var(--ink)}
@@ -78,7 +77,7 @@
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="index.html" aria-label="Voltar para a página inicial"><span class="mark"></span><span>sylo</span></a>
+      <a class="brand" href="index.html" aria-label="Voltar para a página inicial"><img src="assets/brand/sylo-logo.png" alt="Sylo"></a>
       <div class="top-actions">
         <a class="back" href="index.html">Voltar para o site</a>
         <a class="top-cta" href="index.html#demonstracao">Agendar demonstração</a>
