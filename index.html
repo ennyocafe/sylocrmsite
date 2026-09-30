@@ -503,6 +503,10 @@
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .demo-submit{width:100%;background:#151412;color:#fff;border:0;border-radius:999px;padding:18px;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;margin-top:10px;transition:background .2s ease,transform .15s ease;letter-spacing:-.01em}
   .demo-submit:hover{background:#2a251f;transform:translateY(-1px)}
+  .demo-submit:disabled{cursor:wait;opacity:.72;transform:none}
+  .form-error{display:none;margin:12px 0 0;color:#b42318;font-size:13px;line-height:1.5;text-align:center}
+  .form-error.show{display:block}
+  .form-honeypot{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
   .support-success{display:none;text-align:center;padding:18px 0 6px}
   .support-success.show{display:block}
   .support-success .success-icon{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;background:#EAF7F0;color:var(--good)}
@@ -973,22 +977,26 @@
       <h2 class="modal-title" id="modalTitle">Agende sua demonstração</h2>
       <p class="modal-sub">Mostramos o Sylo rodando com a rotina do seu time em menos de 30 minutos.</p>
       <form id="demoForm" novalidate>
+        <div class="form-honeypot" aria-hidden="true">
+          <label for="f-website">Website</label>
+          <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
         <div class="form-field">
           <label for="f-nome">Nome completo</label>
-          <input id="f-nome" type="text" required placeholder="João Silva">
+          <input id="f-nome" name="nome" type="text" required placeholder="João Silva">
         </div>
         <div class="form-field">
           <label for="f-email">E-mail profissional</label>
-          <input id="f-email" type="email" required placeholder="joao@empresa.com.br">
+          <input id="f-email" name="email" type="email" required placeholder="joao@empresa.com.br">
         </div>
         <div class="form-field">
           <label for="f-empresa">Empresa</label>
-          <input id="f-empresa" type="text" required placeholder="Nome da sua representação">
+          <input id="f-empresa" name="empresa" type="text" required placeholder="Nome da sua representação">
         </div>
         <div class="form-row">
           <div class="form-field">
             <label for="f-func">Pessoas na equipe</label>
-            <select id="f-func" required>
+            <select id="f-func" name="pessoas_equipe" required>
               <option value="">Selecione</option>
               <option>1 a 5</option>
               <option>6 a 20</option>
@@ -999,7 +1007,7 @@
           </div>
           <div class="form-field">
             <label for="f-cargo">Cargo</label>
-            <select id="f-cargo" required>
+            <select id="f-cargo" name="cargo" required>
               <option value="">Selecione</option>
               <option>Proprietário / Sócio</option>
               <option>Diretor</option>
@@ -1011,7 +1019,7 @@
         </div>
         <div class="form-field">
           <label for="f-disp">Disponibilidade para a reunião</label>
-          <select id="f-disp" required>
+          <select id="f-disp" name="disponibilidade" required>
             <option value="">Selecione um horário</option>
             <option>Segunda a sexta, manhã (8h–12h)</option>
             <option>Segunda a sexta, tarde (13h–18h)</option>
@@ -1020,6 +1028,7 @@
           </select>
         </div>
         <button type="submit" class="demo-submit">Agendar minha demonstração</button>
+        <p class="form-error" id="demoError" role="alert">Não foi possível enviar agora. Verifique sua conexão e tente novamente.</p>
       </form>
     </div>
   </div>
@@ -1226,6 +1235,7 @@
   var supportLink=document.getElementById('supportLink');
   var supportFormWrap=document.getElementById('supportFormWrap');
   var supportSuccess=document.getElementById('supportSuccess');
+  var demoError=document.getElementById('demoError');
 
   function openDemo(){
     overlay.classList.add('open');
@@ -1260,15 +1270,60 @@
     }
   });
 
-  demoForm.addEventListener('submit',function(e){
+  demoForm.addEventListener('submit',async function(e){
     e.preventDefault();
     var inputs=demoForm.querySelectorAll('[required]');
     var ok=true;
+    var firstInvalid=null;
     inputs.forEach(function(el){
-      if(!el.value.trim()){ el.style.borderColor='#ef4444'; ok=false; }
+      if(!el.value.trim()||!el.checkValidity()){
+        el.style.borderColor='#ef4444';
+        ok=false;
+        if(!firstInvalid) firstInvalid=el;
+      }
       else el.style.borderColor='';
     });
-    if(ok) window.location.href='obrigado.html';
+    if(!ok){
+      if(firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    var submitButton=demoForm.querySelector('[type="submit"]');
+    var originalText=submitButton.textContent;
+    var formData=new FormData(demoForm);
+    var payload={
+      nome:formData.get('nome'),
+      email:formData.get('email'),
+      empresa:formData.get('empresa'),
+      pessoas_equipe:formData.get('pessoas_equipe'),
+      cargo:formData.get('cargo'),
+      disponibilidade:formData.get('disponibilidade'),
+      website:formData.get('website'),
+      pagina:window.location.href
+    };
+
+    submitButton.disabled=true;
+    submitButton.textContent='Enviando...';
+    demoError.classList.remove('show');
+
+    try{
+      var response=await fetch('/api/leads',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'X-Sylo-Form':'demonstracao'
+        },
+        body:JSON.stringify(payload),
+        credentials:'omit'
+      });
+      if(!response.ok) throw new Error('Webhook retornou '+response.status);
+      window.location.href='obrigado.html';
+    }catch(error){
+      console.error('Falha ao enviar demonstração:',error);
+      demoError.classList.add('show');
+      submitButton.disabled=false;
+      submitButton.textContent=originalText;
+    }
   });
 
   supportForm.addEventListener('submit',function(e){
