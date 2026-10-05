@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /obrigado.html
+
+Sitemap: https://sylocrm.com.br/sitemap.xml

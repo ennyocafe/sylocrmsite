@@ -1,0 +1,28 @@
+.sylo-language{position:relative;display:block;flex:0 0 auto;font-family:"Inter",system-ui,-apple-system,sans-serif}
+.sylo-language-button{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:10px 14px;border:1px solid rgba(24,23,19,.16);border-radius:999px;background:#fff;color:#181713;font:600 14px/1 inherit;cursor:pointer;white-space:nowrap;transition:border-color .18s ease,background .18s ease}
+.sylo-language-button:hover{border-color:rgba(24,23,19,.42);background:#fbfaf7}
+.sylo-language-button svg{flex:0 0 auto}
+.sylo-language-caret{transition:transform .18s ease}
+.sylo-language.open .sylo-language-caret{transform:rotate(180deg)}
+.sylo-language-menu{position:absolute;top:calc(100% + 9px);right:0;z-index:200;min-width:176px;margin:0;padding:6px;list-style:none;border:1px solid #e8e3d8;border-radius:14px;background:#fff;box-shadow:0 18px 44px -18px rgba(0,0,0,.28);opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}
+.sylo-language.open .sylo-language-menu{opacity:1;transform:translateY(0);pointer-events:auto}
+.sylo-language-option{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 12px;border-radius:9px;color:#181713;font-size:14px;font-weight:600;cursor:pointer}
+.sylo-language-option:hover{background:#fdf4dc}
+.sylo-language-option.on{color:#df8612;background:#fffaf0}
+.sylo-language-code{color:#625d54;font-size:11px;font-weight:800;letter-spacing:.05em}
+.sylo-language-option.on .sylo-language-code{color:#df8612}
+.goog-te-banner-frame,.goog-te-balloon-frame,#goog-gt-tt,.goog-te-spinner-pos{display:none!important}
+body{top:0!important}
+#google_translate_element{position:fixed!important;left:-9999px!important;bottom:0!important;width:1px!important;height:1px!important;overflow:hidden!important}
+
+/* Home: mantém o contraste do seletor sobre o hero. */
+#nav:not(.scrolled) .sylo-language-button{border-color:rgba(255,255,255,.35);background:transparent;color:#fff}
+#nav:not(.scrolled) .sylo-language-button:hover{background:rgba(255,255,255,.12)}
+header .lang.sylo-language{display:block}
+
+@media(max-width:700px){
+  .sylo-language-button{min-height:38px;padding:9px 11px}
+  .sylo-language-current{display:none}
+  .sylo-language-button .sylo-language-code{font-size:12px;color:currentColor}
+  .sylo-language-menu{min-width:164px}
+}
