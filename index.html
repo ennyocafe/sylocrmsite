@@ -110,11 +110,11 @@
 
   /* fixed nav */
   .nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .28s ease, box-shadow .28s ease}
-  .nav-inner{max-width:1180px;margin:0 auto;padding:20px 28px;display:flex;align-items:center;justify-content:space-between}
+  .nav-inner{max-width:1180px;margin:0 auto;padding:20px 28px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;column-gap:clamp(32px,4vw,56px)}
   .logo-menu{height:34px;display:block;filter:brightness(0) invert(1);transition:filter .28s ease}
   .mark{width:27px;height:27px;border-radius:7px;background:linear-gradient(135deg,var(--amber-soft),var(--amber));display:inline-block;position:relative}
   .mark:after{content:"";position:absolute;inset:6px 5px;border-left:3px solid #fff;border-bottom:3px solid #fff;transform:skewX(-12deg);opacity:.95}
-  .navlinks{display:flex;gap:60px;font-size:16px;font-weight:500}
+  .navlinks{display:flex;justify-content:center;gap:clamp(30px,3.2vw,48px);font-size:16px;font-weight:500}
   .navlinks a{color:#fff;text-decoration:none;opacity:.96;transition:color .28s ease}
   .navlinks a:hover{opacity:1}
   .nav-cta{background:#151412;color:#fff;border:0;border-radius:999px;padding:20px 40px;font-weight:600;font-size:15px;line-height:1;cursor:pointer;font-family:inherit;transition:transform .15s ease}
@@ -122,9 +122,11 @@
   .nav.scrolled{background:rgba(255,255,255,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line),0 10px 34px -20px rgba(0,0,0,.25)}
   .nav.scrolled .navlinks a{color:var(--ink)}
   .nav.scrolled .logo-menu{filter:none}
-  .nav-actions{display:flex;align-items:center;gap:18px}
+  .nav-actions{display:flex;align-items:center;gap:14px}
   .lang{position:relative}
-  .lang-btn{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:11px 16px;font-family:inherit;font-size:15px;font-weight:500;line-height:1;cursor:pointer;transition:color .28s ease,border-color .28s ease,background .2s ease}
+  .lang-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:11px 14px;font-family:inherit;font-size:15px;font-weight:600;line-height:1;cursor:pointer;transition:color .28s ease,border-color .28s ease,background .2s ease}
+  .lang-btn .sylo-language-current{display:none}
+  .lang-btn .sylo-language-code{font-size:12px;color:currentColor}
   .lang-btn:hover{background:rgba(255,255,255,.12)}
   .lang-caret{transition:transform .2s ease}
   .lang.open .lang-caret{transform:rotate(180deg)}
@@ -339,7 +341,7 @@
   .crm-story-inner{max-width:1240px;margin:0 auto}
   .crm-story-head{max-width:790px;margin:0 auto 64px;text-align:center}
   .crm-story-kicker{display:inline-flex;align-items:center;gap:8px;margin:0 0 18px;color:#946000;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
-  .crm-story-kicker:before{content:"";width:28px;height:2px;background:var(--amber);border-radius:2px}
+  .crm-story-kicker:before{display:none}
   .crm-story-head h2{font-size:48px;line-height:1.06;letter-spacing:-.045em;margin:0 0 18px}
   .crm-story-head p{max-width:680px;margin:0 auto;color:var(--muted);font-size:18px;line-height:1.65}
   .crm-story-list{display:flex;flex-direction:column;gap:28px}
@@ -643,7 +645,8 @@
         <div class="lang" id="lang">
           <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Selecionar idioma">
             <svg class="lang-globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 3.9 6 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-6-3.9-9S9.4 5.7 12 3z"/></svg>
-            <span id="langCur">Português</span>
+            <span class="sylo-language-current" id="langCur">Português</span>
+            <span class="sylo-language-code">PT</span>
             <svg class="lang-caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <ul class="lang-menu" id="langMenu" role="listbox">
@@ -783,7 +786,7 @@
     <div class="crm-story-inner">
       <header class="crm-story-head">
         <p class="crm-story-kicker">Sylo por dentro</p>
-        <h2>Uma operação inteira em um único lugar</h2>
+        <h2>Uma operação inteira em<br>um único lugar</h2>
         <p>Da primeira conversa ao fechamento, cada tela foi desenhada para o time agir rápido e para o gestor enxergar o que realmente move as vendas.</p>
       </header>
 
