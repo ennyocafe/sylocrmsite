@@ -1,4 +1,7 @@
 /* Uma única imagem editorial por pauta, adaptada aos três contextos do blog. */
+.hero{isolation:isolate;background:#151411}
+.hero:before{content:"";position:absolute;z-index:-1;width:430px;height:760px;right:10%;top:-105px;border-radius:0;background:linear-gradient(160deg,rgba(255,219,126,.18),rgba(244,167,42,.09) 54%,rgba(224,126,12,.025));clip-path:polygon(42% 0,100% 0,69% 36%,96% 36%,21% 100%,42% 55%,8% 55%);filter:drop-shadow(0 0 45px rgba(244,167,42,.11));transform:rotate(3deg);pointer-events:none}
+.hero:after{content:"";position:absolute;z-index:-2;inset:0;background:radial-gradient(circle at 79% 12%,rgba(244,167,42,.14),transparent 30%),radial-gradient(circle at 10% 82%,rgba(255,211,106,.055),transparent 28%);pointer-events:none}
 .featured-main,.featured-side{background-color:#24211b;background-image:linear-gradient(180deg,rgba(18,17,15,.08) 0%,rgba(18,17,15,.18) 38%,rgba(18,17,15,.9) 100%),var(--cover);background-position:center;background-size:cover}
 .featured-main:after,.featured-side:after{background:linear-gradient(110deg,rgba(244,167,42,.12),transparent 44%)}
 .thumb{height:auto;aspect-ratio:1;background-position:center;background-size:cover}
@@ -11,4 +14,4 @@
 .article-hero .dek{color:rgba(255,255,255,.78)}
 .article-hero .meta{color:rgba(255,255,255,.62)}
 .article-hero .dot{background:rgba(255,255,255,.42)}
-@media(max-width:680px){.article-hero:before{inset:-24px}}
+@media(max-width:680px){.hero:before{width:280px;height:610px;right:-15%;top:-74px;opacity:.72}.article-hero:before{inset:-24px}}
