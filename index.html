@@ -28,10 +28,19 @@
 <meta name="twitter:description" content="Distribua leads, organize o funil, acompanhe follow-ups e gerencie sua equipe de vendas de consórcio em um só lugar.">
 <meta name="twitter:image" content="https://www.sylocrm.com.br/assets/hero/sara-corporativo-1600.webp">
 <link rel="preload" as="image" href="assets/hero/sara-corporativo-1600.webp" type="image/webp" fetchpriority="high">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/language.css">
+<style>
+  .sylo-language{position:relative;display:block;flex:0 0 auto;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+  .sylo-language-button{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:10px 14px;border:1px solid rgba(24,23,19,.16);border-radius:999px;background:#fff;color:#181713;font:600 14px/1 inherit;cursor:pointer;white-space:nowrap;transition:border-color .18s ease,background .18s ease}
+  .sylo-language-button:hover{border-color:rgba(24,23,19,.42);background:#fbfaf7}
+  .sylo-language-button svg{flex:0 0 auto}.sylo-language-caret{transition:transform .18s ease}.sylo-language.open .sylo-language-caret{transform:rotate(180deg)}
+  .sylo-language-menu{position:absolute;top:calc(100% + 9px);right:0;z-index:200;min-width:176px;margin:0;padding:6px;list-style:none;border:1px solid #e8e3d8;border-radius:14px;background:#fff;box-shadow:0 18px 44px -18px rgba(0,0,0,.28);opacity:0;transform:translateY(-6px);pointer-events:none;visibility:hidden;transition:opacity .18s ease,transform .18s ease}
+  .sylo-language.open .sylo-language-menu{opacity:1;transform:translateY(0);pointer-events:auto;visibility:visible}
+  .sylo-language-option{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 12px;border-radius:9px;color:#181713;font-size:14px;font-weight:600;cursor:pointer}.sylo-language-option:hover{background:#fdf4dc}.sylo-language-option.on{color:#7a4b00;background:#fffaf0}
+  .sylo-language-code{color:#625d54;font-size:11px;font-weight:800;letter-spacing:.05em}.sylo-language-option.on .sylo-language-code{color:#7a4b00}
+  .goog-te-banner-frame,.goog-te-balloon-frame,#goog-gt-tt,.goog-te-spinner-pos,#google_translate_element{display:none!important}body{top:0!important}
+  #nav:not(.scrolled) .sylo-language-button{border-color:rgba(255,255,255,.35);background:transparent;color:#fff}#nav:not(.scrolled) .sylo-language-button:hover{background:rgba(255,255,255,.12)}header .lang.sylo-language{display:block}
+  @media(max-width:700px){.sylo-language-button{min-height:38px;padding:9px 11px}.sylo-language-current{display:none}.sylo-language-button .sylo-language-code{font-size:12px;color:currentColor}.sylo-language-menu{min-width:164px}}
+</style>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -275,7 +284,7 @@
   .feat{padding:30px 30px 34px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
   .feat:nth-child(3n){border-right:0}
   .feat:nth-last-child(-n+3){border-bottom:0}
-  .feat-num{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--amber-deep);margin-bottom:22px}
+  .feat-num{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700;color:#7a4b00;margin-bottom:22px}
   .feat-num:before{content:"";width:3px;height:15px;border-radius:2px;background:var(--amber)}
   .feat-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
   .feat-ico{width:46px;height:46px;border-radius:12px;background:var(--amber-tint);display:flex;align-items:center;justify-content:center;color:var(--amber-deep);flex:0 0 auto}
@@ -355,7 +364,7 @@
   .crm-story-row:nth-child(3) .crm-copy{background:#eef8f3}
   .crm-story-row:nth-child(4) .crm-copy{background:#f1f4ff}
   .crm-story-row:nth-child(5) .crm-copy{background:#fff6e6}
-  .crm-num{font-size:12px;font-weight:800;letter-spacing:.12em;color:#9a6a16;margin-bottom:auto}
+  .crm-num{font-size:12px;font-weight:800;letter-spacing:.12em;color:#68470c;margin-bottom:auto}
   .crm-copy h3{font-size:31px;line-height:1.08;letter-spacing:-.035em;margin:44px 0 18px}
   .crm-copy p{font-size:17px;line-height:1.65;color:#514c43;margin:0 0 36px}
   .crm-more{margin-top:auto;padding:0;border:0;background:none;color:var(--ink);font:700 15px/1.2 inherit;cursor:pointer;display:inline-flex;align-items:center;gap:12px}
@@ -492,7 +501,7 @@
   .pricing-toggle{display:inline-flex;align-items:center;gap:4px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px;margin:0 0 40px;position:relative;z-index:1}
   .pt{border:0;background:none;font-family:inherit;font-weight:600;font-size:14px;color:var(--muted);padding:10px 22px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:color .2s,background .2s}
   .pt.on{background:#151412;color:#fff}
-  .pt .save{font-size:11px;font-weight:700;color:var(--amber-deep);background:var(--amber-tint);padding:2px 7px;border-radius:999px}
+  .pt .save{font-size:11px;font-weight:700;color:#704700;background:var(--amber-tint);padding:2px 7px;border-radius:999px}
   .pt.on .save{color:#3a2b06;background:var(--amber-soft)}
 
   /* testimonials */
@@ -554,11 +563,11 @@
   .foot-inner{max-width:1180px;margin:0 auto;padding:60px 28px 44px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px}
   .foot-brand img{height:30px;display:block}
   .foot-brand p{color:var(--muted);font-size:14px;line-height:1.6;margin:16px 0 0;max-width:36ch}
-  .foot-col h4{font-size:13px;font-weight:700;margin:0 0 12px}
+  .foot-col h3{font-size:13px;font-weight:700;margin:0 0 12px}
   .foot-col a{display:block;color:var(--muted);text-decoration:none;font-size:14px;padding:5px 0}
   .foot-col a:hover{color:var(--ink)}
   .foot-bottom{border-top:1px solid var(--line)}
-  .foot-copy{max-width:1180px;margin:0 auto;padding:20px 28px;color:#8a857a;font-size:13px}
+  .foot-copy{max-width:1180px;margin:0 auto;padding:20px 28px;color:#5b554b;font-size:13px}
 
   @media (max-width:900px){
     .tst-grid{grid-template-columns:1fr;gap:40px}
@@ -617,7 +626,7 @@
   .cookie-settings-panel{display:none;max-width:1180px;margin:0 auto;padding:0 28px 20px;flex-direction:column;gap:10px}
   .cookie-settings-panel.open{display:flex}
   .cookie-toggle-row{display:flex;align-items:flex-start;justify-content:space-between;padding:14px 16px;border:1px solid var(--line);border-radius:12px;gap:20px}
-  .cookie-toggle-info h5{font-size:14px;font-weight:700;color:var(--ink);margin:0 0 3px}
+  .cookie-toggle-info h3{font-size:14px;font-weight:700;color:var(--ink);margin:0 0 3px}
   .cookie-toggle-info p{font-size:13px;color:var(--muted);margin:0;line-height:1.4}
   .toggle-switch{position:relative;width:44px;height:24px;flex-shrink:0;margin-top:2px}
   .toggle-switch input{opacity:0;width:0;height:0;position:absolute}
@@ -649,7 +658,7 @@
             <span class="sylo-language-code">PT</span>
             <svg class="lang-caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <ul class="lang-menu" id="langMenu" role="listbox">
+          <ul class="lang-menu" id="langMenu" role="listbox" aria-label="Selecionar idioma">
             <li role="option" data-lang="pt" data-label="Português" class="on">Português <span>PT</span></li>
             <li role="option" data-lang="es" data-label="Español">Español <span>ES</span></li>
             <li role="option" data-lang="en" data-label="English">English <span>EN</span></li>
@@ -659,6 +668,8 @@
       </div>
     </div>
   </header>
+
+  <main id="main-content">
 
   <div class="mob-menu" id="mobMenu">
     <a href="#showcase">Produto</a>
@@ -1032,7 +1043,7 @@
 
   <section class="cta-band">
     <div class="cta-card">
-      <video class="cta-bg" autoplay muted loop playsinline preload="metadata" poster="assets/inline/asset-20.jpg">
+      <video class="cta-bg" autoplay muted loop playsinline preload="metadata" poster="assets/inline/asset-20.jpg" aria-hidden="true" tabindex="-1">
         <source src="assets/cta-bg.mp4" type="video/mp4">
       </video>
       <div class="cta-content">
@@ -1043,6 +1054,8 @@
     </div>
   </section>
 
+  </main>
+
   <footer class="foot">
     <div class="foot-inner">
       <div class="foot-brand">
@@ -1050,11 +1063,11 @@
         <p>CRM para times de vendas que vivem de lead e querem crescer sem perder o controle.</p>
       </div>
       <div class="foot-col">
-        <h4>Produto</h4>
+        <h3>Produto</h3>
         <a href="#showcase">Funcionalidades</a><a href="planos.html">Planos</a><a href="blog/index.html">Blog</a><a href="#demonstracao">Agendar demonstração</a>
       </div>
       <div class="foot-col">
-        <h4>Empresa</h4>
+        <h3>Empresa</h3>
         <a href="#">Sobre</a><a href="#">Contato</a><a href="#suporte" id="supportLink">Suporte</a>
       </div>
     </div>
@@ -1205,21 +1218,21 @@
     <div class="cookie-settings-panel" id="cookieSettingsPanel">
       <div class="cookie-toggle-row">
         <div class="cookie-toggle-info">
-          <h5>Cookies essenciais</h5>
+          <h3>Cookies essenciais</h3>
           <p>Necessários para o funcionamento do site. Não podem ser desativados.</p>
         </div>
         <label class="toggle-switch"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
       </div>
       <div class="cookie-toggle-row">
         <div class="cookie-toggle-info">
-          <h5>Cookies de análise</h5>
+          <h3>Cookies de análise</h3>
           <p>Nos ajudam a entender como você usa o site para melhorar a experiência.</p>
         </div>
         <label class="toggle-switch"><input type="checkbox" id="analyticsToggle" checked><span class="toggle-slider"></span></label>
       </div>
       <div class="cookie-toggle-row">
         <div class="cookie-toggle-info">
-          <h5>Cookies de marketing</h5>
+          <h3>Cookies de marketing</h3>
           <p>Usados para exibir anúncios relevantes para você em outros canais.</p>
         </div>
         <label class="toggle-switch"><input type="checkbox" id="marketingToggle"><span class="toggle-slider"></span></label>
@@ -1268,6 +1281,7 @@
       assigned=document.getElementById('assigned'),count=document.getElementById('countN');
   var idx=0,total=48;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!lead||!flow||!assigned||!count) return;
   function set(d){
     document.getElementById('leadName').textContent=d.n;
     document.getElementById('av').innerHTML=d.avatar;

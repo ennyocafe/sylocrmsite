@@ -119,7 +119,7 @@
 
   var widget=document.createElement('div');
   widget.id='google_translate_element';
-  widget.setAttribute('aria-hidden','true');
+  widget.hidden=true;
   document.body.appendChild(widget);
   var script=document.createElement('script');
   script.src='https://translate.google.com/translate_a/element.js?cb=syloGoogleTranslateInit';

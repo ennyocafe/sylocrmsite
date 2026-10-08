@@ -8,12 +8,12 @@
 .sylo-language.open .sylo-language-menu{opacity:1;transform:translateY(0);pointer-events:auto}
 .sylo-language-option{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 12px;border-radius:9px;color:#181713;font-size:14px;font-weight:600;cursor:pointer}
 .sylo-language-option:hover{background:#fdf4dc}
-.sylo-language-option.on{color:#df8612;background:#fffaf0}
+.sylo-language-option.on{color:#7a4b00;background:#fffaf0}
 .sylo-language-code{color:#625d54;font-size:11px;font-weight:800;letter-spacing:.05em}
-.sylo-language-option.on .sylo-language-code{color:#df8612}
+.sylo-language-option.on .sylo-language-code{color:#7a4b00}
 .goog-te-banner-frame,.goog-te-balloon-frame,#goog-gt-tt,.goog-te-spinner-pos{display:none!important}
 body{top:0!important}
-#google_translate_element{position:fixed!important;left:-9999px!important;bottom:0!important;width:1px!important;height:1px!important;overflow:hidden!important}
+#google_translate_element{display:none!important}
 
 /* Home: mantém o contraste do seletor sobre o hero. */
 #nav:not(.scrolled) .sylo-language-button{border-color:rgba(255,255,255,.35);background:transparent;color:#fff}
