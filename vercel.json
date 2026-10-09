@@ -3,6 +3,9 @@
   "functions": {
     "api/leads.js": {
       "maxDuration": 10
+    },
+    "api/consorcio-leads.js": {
+      "maxDuration": 10
     }
   },
   "headers": [
